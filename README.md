@@ -14,15 +14,21 @@
 
 ### 浏览完整依赖图
 
-完整图有 1,478,280 个可达声明和 158,686,420 条分类引用边。以下命令适用于 macOS 和 Linux，需要 Python 3、Zstandard 命令行工具和至少 6 GiB 的可用磁盘空间。使用 GitHub 上的 **Download ZIP** 下载并解压本仓库，或克隆仓库。把 [Release 中的 `proof-topology.sqlite.zst`](https://github.com/realAaronWu/riemann-hypothesis/releases/tag/proof-topology-v1) 下载到仓库根目录，再在该目录运行以下命令。
+完整图有 1,478,280 个可达声明和 158,686,420 条分类引用边。以下命令适用于 macOS 和 Linux，需要 Python 3.7 或更新版本、Zstandard 命令行工具和至少 6 GiB 的可用磁盘空间。使用 GitHub 上的 **Download ZIP** 下载并解压本仓库，或克隆仓库。把 [Release 的 10 个数据分卷](https://github.com/realAaronWu/riemann-hypothesis/releases/tag/proof-topology-v1)（文件名从 `proof-topology.sqlite.zst.part-aa` 到 `proof-topology.sqlite.zst.part-aj`）下载到仓库根目录。已安装 GitHub CLI 的读者可以在该目录运行这条命令一次下载全部分卷。
 
 ```bash
-zstd -d proof-topology.sqlite.zst -o proof-topology.sqlite
-shasum -a 256 -c tools/SHA256SUMS
-python3 tools/browse.py proof-topology.sqlite
+gh release download proof-topology-v1 --repo realAaronWu/riemann-hypothesis --pattern 'proof-topology.sqlite.zst.part-*'
 ```
 
-打开 [本机依赖浏览器](http://127.0.0.1:8769/)。在搜索框输入 `funext`，可以找到它引用的 `Quot.sound`。点击任意相邻声明继续展开。若默认端口已被占用，运行时添加 `--port 8770`，并打开终端打印的地址。若校验失败，重新下载压缩包并解压。
+下载完成后，在同一目录运行以下命令。校验时，每个文件都应显示 `OK`。
+
+```bash
+cat proof-topology.sqlite.zst.part-?? | zstd -d -o proof-topology.sqlite &&
+  shasum -a 256 -c tools/SHA256SUMS &&
+  python3 tools/browse.py proof-topology.sqlite
+```
+
+打开 [本机依赖浏览器](http://127.0.0.1:8769/)。在搜索框输入 `funext`，可以找到它引用的 `Quot.sound`。点击任意相邻声明继续展开。若默认端口已被占用，运行时添加 `--port 8770`，并打开终端打印的地址。若解压或校验失败，重新下载出错的分卷，移开已有的 `proof-topology.sqlite`，再运行上述命令。
 
 ## 阅读中文导读
 
