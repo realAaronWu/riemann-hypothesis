@@ -51,7 +51,7 @@
 `VVle E t B` 要求两个性质。首先每个 $`\ell`$ 上、每个 $1\le j<t$ 的长度 $a_{\ell,j}$ 有限。其次对每一有限素数集合 $P$，有
 
 $$
-\sum_{\ell\in P}(\log\ell)\sum_{1\le j<t}a_{\ell,j}\le B .
+\sum_{\ell\in P}(\log\ell)\sum_{1\le j\lt t}a_{\ell,j}\le B .
 $$
 
 若模的长度为 $a$ 且有限，它有 $\ell^a$ 个元素，所以乘 $\log\ell$ 把元素数的乘积变成了和。比如只看一次扭曲，长度分别为 $a_{3,1}=2$ 和 $a_{5,1}=1$，两项的和是 $\log45$。若界取 $B=\log40$，只查 $`\{3\}`$ 或只查 $`\{5\}`$ 都合格，集合 $`\{3,5\}`$ 已给出反例。这是长度数据的算术示例。源码把有限性和加权和都列出来，因此将长度转成自然数求和前已经排除了 $\top$。 [`VVle` 的定义与单调性](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CharacterBoxes/ExistsPageN.lean#L12-L17) · [`VVle.mono`](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Development/AutomorphicArithmetic/CharacterBoxes/ExistsPageN.lean#L49-L65)
