@@ -1,0 +1,40 @@
+{
+  "root": "riemannHypothesis",
+  "verified_root": true,
+  "complete": true,
+  "reachable": 1478280,
+  "edge_groups": 158686420,
+  "kind_counts": {
+    "inductive": 7970,
+    "definition": 214244,
+    "constructor": 8342,
+    "theorem": 1246140,
+    "recursor": 1486,
+    "axiom": 3,
+    "opaque": 91,
+    "quotient": 4
+  },
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "unresolved": 0,
+  "unsafe": [],
+  "lean_axiom_walk": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "lean_axiom_walk_missing": 0,
+  "module_source_links": 1478280,
+  "project_modules_indexed": 175187,
+  "module_imports_unresolved": 0,
+  "scope_batch_sha256": "169293c9d142d7a9ee381cd95cc97c13593caff956ddc658733b8d8c9d16ef03",
+  "resolved_variants": 40595,
+  "reachable_modules": 151893,
+  "main_olean_sha256": "9146dfb4148e24d2252e04c50742f3e49dd126dfcc5006d10bf5f873ddf796ad",
+  "database_sha256": "11db79acb55fa8bc6770535e583e0d4192758b38539bae9be26b81e9c7497706",
+  "reviewed_overview_sha256": "6f7b7af9462150c393b51f4760eeaa0a3724311c94933ef9476b155bedebb192",
+  "browser_urls_checked_against_pinned_source": 33
+}

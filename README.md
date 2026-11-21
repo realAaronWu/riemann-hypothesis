@@ -1,5 +1,31 @@
 # 黎曼猜想候选证明：中文导读
 
+**本交互网站发明人：Aaron Wu。© 2026 Aaron Wu，版权所有，不得侵权。** [版权与来源](COPYRIGHT.md)
+
+## 使用交互式依赖图
+
+打开 [线上主线图](https://realaaronwu.github.io/riemann-hypothesis/)。页面从最终定理 `riemannHypothesis` 打开，主线图展示 46 个声明和 53 条直接引用，无需下载数据。
+
+1. **读一个节点。** 点击「黎曼猜想」，在侧栏查看 Lean 声明全名和原始源码。点击 `rhOfAll`，即可沿证明体引用向上追溯。
+2. **读一条箭头。** 箭头从依赖项指向使用它的声明。实线指向在定义体或证明体中使用该依赖的声明，虚线表示类型引用。点击箭头可查看引用类别和使用者的源码。
+3. **从公理追到结论。** 点击任意公理按钮，查看该公理到最终定理的一条实际引用路径。侧栏的有序列表可以逐步打开路径上的声明。
+
+[主线边表](docs/edges.tsv) · [全量图验证摘要](docs/verification.json)
+
+### 浏览完整依赖图
+
+完整图有 1,478,280 个可达声明和 158,686,420 条分类引用边。以下命令适用于 macOS 和 Linux，需要 Python 3、Zstandard 命令行工具和至少 6 GiB 的可用磁盘空间。使用 GitHub 上的 **Download ZIP** 下载并解压本仓库，或克隆仓库。把 [Release 中的 `proof-topology.sqlite.zst`](https://github.com/realAaronWu/riemann-hypothesis/releases/tag/proof-topology-v1) 下载到仓库根目录，再在该目录运行以下命令。
+
+```bash
+zstd -d proof-topology.sqlite.zst -o proof-topology.sqlite
+shasum -a 256 -c tools/SHA256SUMS
+python3 tools/browse.py proof-topology.sqlite
+```
+
+打开 [本机依赖浏览器](http://127.0.0.1:8769/)。在搜索框输入 `funext`，可以找到它引用的 `Quot.sound`。点击任意相邻声明继续展开。若默认端口已被占用，运行时添加 `--port 8770`，并打开终端打印的地址。若校验失败，重新下载压缩包并解压。
+
+## 阅读中文导读
+
 这份导读面向学过**复分析、抽象代数和基础数论**的数学系研究生。我们从一个问题开始：为什么能用素数和的增长速度排除 $L$ 函数的零点？接着再问，这份候选证明怎样尝试通过格、周期和自守形式得到所需的估计。
 
 材料依据 Levent Alpöge 公布的 Lean 源码。导读解释的是**这份候选论证在做什么**，其中最深的数学环节仍有待重建。阅读源码、理解数学、独立检查完整证明分别需要自己的证据。哪些步骤已经局部重跑，哪些只追到了源码接口，见[版本与证据范围](SOURCES.md)。
@@ -23,4 +49,4 @@
 
 背景章可以按需阅读：[Dirichlet 特征与欧拉乘积](chapters/background/01-analysis.md) · [格、局部与整体](chapters/background/02-arithmetic.md) · [自守与伽罗瓦入门](chapters/background/03-automorphic.md) · [素数的标签与有限群平均](chapters/background/04-finite-labels.md) · [一次上同调和局部消失](chapters/background/05-cohomology.md)。
 
-源代码由原发布方和公开镜像提供。本仓库收录原创导读、定位链接和核查记录。
+源代码由原发布方和公开镜像提供。本仓库收录原创导读、交互式依赖图和核查记录。
