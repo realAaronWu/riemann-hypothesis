@@ -27,7 +27,7 @@ flowchart LR
 
 ## 用 $0.6+it$ 做一次读图练习
 
-用 $\beta$ 表示素数和上界中的增长指数。若分析步骤允许用 $\beta=0.55$，就有 $0.55<0.6$，因此可以排除这个点。若只得到 $\beta=0.7$，结论是「实部大于 $0.7$ 的区域无零」，对这个点没有帮助。原稿的一个窗口估计形如 $x^{1/2+(e_D+e_L+7)\varepsilon}$。关键是先固定两个常数，再为当前零点选择足够小的 $\varepsilon$。只说「令 $\varepsilon$ 趋零」会漏掉对象族也必须随这个选择存在的条件。[窗口估计和参数选择的源码](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/RamificationFrobenius/TotientGaloisClasses/TopWin.lean#L25)
+用 $\beta$ 表示素数和上界中的增长指数。若分析步骤允许用 $\beta=0.55$，就有 $0.55<0.6$，因此可以排除这个点。若只得到 $\beta=0.7$，结论是「实部大于 $0.7$ 的区域无零」，对这个点没有帮助。原稿的一个窗口估计形如 $x^{1/2+(e_D+e_L+7)\varepsilon}$。关键是先固定两个常数，再为当前零点选择足够小的 $`\varepsilon`$。只说「令 $`\varepsilon`$ 趋零」会漏掉对象族也必须随这个选择存在的条件。[窗口估计和参数选择的源码](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/SharpRestriction/RamificationFrobenius/TotientGaloisClasses/TopWin.lean#L25)
 
 另一个问题是 $x$ 从哪里取。如果上界只在 $x=2^{2^n}$ 这些离散的点成立，仍然不能使用原稿的窗口论证。原稿要求的是：无论给多大的起点下限，都能在它后面找到一个 $Y$，使上界在**整个**区间 $[Y,Y^{3/2}]$ 上成立。窗口之间可以有空档。这与处处成立、或只在一列点上成立，都有区别。第 2、3、5 章会分别解释估计、窗口和构造如何衔接。
 
@@ -37,9 +37,9 @@ flowchart LR
 
 | 符号 | 在主线里是什么 |
 |---|---|
-| $s=\sigma+it$ | 候选零点，$\sigma$ 是实部。 |
+| $s=\sigma+it$ | 候选零点，$`\sigma`$ 是实部。 |
 | $x,Y,\lambda$ | 截断尺度、窗口左端和窗口指数。主路线取 $\lambda=3/2$。 |
-| $\beta,\varepsilon$ | $\beta$ 是分析步骤允许的上界指数，源码这里写作 `θ`。$\varepsilon$ 是构造与估计用的可选小参数。 |
+| $\beta,\varepsilon$ | $\beta$ 是分析步骤允许的上界指数，源码这里写作 `θ`。$`\varepsilon`$ 是构造与估计用的可选小参数。 |
 | $\chi,\psi$ | 特征。分析章常写 $\chi$，对象族的入口常写 $\psi$。 |
 | $\Lambda(n)$、`Level` | 前者是给素数幂加权的函数，后者是组织有限特征组合的数据。源码有时也用字母 $\Lambda$ 表示后一种对象。 |
 

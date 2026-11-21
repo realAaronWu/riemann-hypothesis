@@ -9,24 +9,24 @@
 普通的 $\zeta(s)$ 把每个 $n^{-s}$ 加起来。加上特征权重，就得到
 
 $$
-L(s,\chi)=\sum_{n\ge 1}\frac{\chi(n)}{n^s},\qquad \operatorname{Re}(s)>1.
+L(s,\chi)=\sum_{n\ge 1}\frac{\chi(n)}{n^s},\qquad \Re (s)>1.
 $$
 
 例如 $\chi_4$ 给出 $1-3^{-s}+5^{-s}-7^{-s}+\cdots$。这里给出的是绝对收敛区域内的定义。讨论临界带时，要使用延拓后的函数。熟悉复分析的读者可以把延拓理解成同一个解析函数在更大区域里的继续定义。
 
-一个特征如果能从严格更小的模数诱导出来，就称为**非本原**。例如模 $6$ 的主特征在与 $6$ 互素的数上取 $1$，其余取 $0$。它从模 $1$ 的主特征诱导，得到的 $L$ 函数要从 $\zeta(s)$ 去掉素数 $2,3$ 的欧拉因子。因此，处理本原特征之后，还要检查去掉因子对零点的影响。
+一个特征如果能从严格更小的模数诱导出来，就称为**非本原**。例如模 $6$ 的主特征在与 $6$ 互素的数上取 $1$，其余取 $0$。它从模 $1$ 的主特征诱导，得到的 $`L`$ 函数要从 $\zeta(s)$ 去掉素数 $2,3$ 的欧拉因子。因此，处理本原特征之后，还要检查去掉因子对零点的影响。
 
 ## 为什么会出现素数幂？
 
 把 $L(s,\chi)$ 写成欧拉乘积，每个素数 $p$ 给出一项 $(1-\chi(p)p^{-s})^{-1}$。它展开为几何级数，每次选取 $p$ 的一个幂次。各素数的选择组合起来，恰好把正整数按唯一分解列了一遍。取对数再求导，会把素数乘积变成求和。于是
 
-$$
+```math
 -\frac{L'(s,\chi)}{L(s,\chi)}
  =\sum_{n\ge1} \frac{\Lambda(n)\chi(n)}{n^s}
- \quad (\operatorname{Re}(s)>1),
-$$
+ \quad (\Re (s)>1),
+```
 
-其中 $\Lambda(n)=\log p$ 当 $n=p^k$（$k\ge1$），其余为零。这解释了为什么 $2,4,8$ 都带权重 $\log 2$，而 $6$ 没有权重。这里的 $L'/L$ 叫作**对数导数**。
+其中 $\Lambda(n)=\log p$ 当 $n=p^k$（$`k\ge1`$），其余为零。这解释了为什么 $2,4,8$ 都带权重 $\log 2$，而 $6$ 没有权重。这里的 $L'/L$ 叫作**对数导数**。
 
 一个两行计算说明它为什么能找零点。若 $L(s)=(s-\rho)^m h(s)$，且 $h(\rho)\ne0$，则
 
@@ -38,6 +38,6 @@ $$
 
 ## 小练习
 
-把截断权重取为 $5/n-1$，再乘上 $\chi_4(n)$。在 $n\le 5$ 时，$2,4$ 被偶数权重清零，$5$ 被截断权重清零。因此加权和只剩 $-\tfrac23\log 3$。去掉特征权重，$2,4$ 会重新出现。这个差异说明：对单个特征的和，不能因为原来的 $\Lambda(n)\ge0$ 就直接使用正性。
+把截断权重取为 $5/n-1$，再乘上 $\chi_4(n)$。在 $n\le 5$ 时，$`2,4`$ 被偶数权重清零，$`5`$ 被截断权重清零。因此加权和只剩 $-\tfrac23\log 3$。去掉特征权重，$`2,4`$ 会重新出现。这个差异说明：对单个特征的和，不能因为原来的 $\Lambda(n)\ge0$ 就直接使用正性。
 
-[回到第 1 章](../01-analytic.md) · [Mathlib 的 Dirichlet $L$ 函数定义](https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/DirichletContinuation.lean)
+[回到第 1 章](../01-analytic.md) · [Mathlib 的 Dirichlet $`L`$ 函数定义](https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/DirichletContinuation.lean)

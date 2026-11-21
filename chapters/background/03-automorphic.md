@@ -6,27 +6,27 @@
 
 复上半平面上的函数满足 $f(z+1)=f(z)$ 时，我们可以用 $e^{2\pi i n z}$ 展开它。再要求它服从 $z\mapsto-1/z$ 的变换律，就大大压缩了允许的函数空间。例如权重 $k$ 的经典模形式还满足 $f(-1/z)=z^k f(z)$，并在尖点满足全纯性条件。尖点形式进一步要求尖点的常数项消失。对 $\mathrm{SL}_2(\mathbb Z)$ 而言，可以在无穷远处读这个条件。 [模形式的定义与变换律，Mathlib 固定版本](https://github.com/leanprover-community/mathlib4/blob/0df444a360ea/Mathlib/NumberTheory/ModularForms/Basic.lean)
 
-自守形式把这种构造放在更一般的群上。若 $G$ 是数域 $F$ 上的代数群，$\mathbb A_F$ 把各处的完备化放在一起，并在几乎所有有限位置要求分量整。把函数 $f$ 写在 $G(F)\backslash G(\mathbb A_F)$ 上，意思是 $f(\gamma g)=f(g)$ 对所有 $\gamma\in G(F)$ 成立。右平移 $(R(h)f)(g)=f(gh)$ 保持这个条件，因此满足额外光滑性、增长等条件的函数空间可以用这个群作用分解。由这类空间得到的不可约表示叫作自守表示。典型的尖点条件是沿真抛物子群的幺幂根积分为零，它推广了经典模形式尖点处常数项为零的条件。 [Harris–Lan–Taylor–Thorne，§1](https://arxiv.org/pdf/1411.6717)
+自守形式把这种构造放在更一般的群上。若 $G$ 是数域 $F$ 上的代数群，$`\mathbb A_F`$ 把各处的完备化放在一起，并在几乎所有有限位置要求分量整。把函数 $f$ 写在 $G(F)\backslash G(\mathbb A_F)$ 上，意思是 $f(\gamma g)=f(g)$ 对所有 $\gamma\in G(F)$ 成立。右平移 $(R(h)f)(g)=f(gh)$ 保持这个条件，因此满足额外光滑性、增长等条件的函数空间可以用这个群作用分解。由这类空间得到的不可约表示叫作自守表示。典型的尖点条件是沿真抛物子群的幺幂根积分为零，它推广了经典模形式尖点处常数项为零的条件。 [Harris–Lan–Taylor–Thorne，§1](https://arxiv.org/pdf/1411.6717)
 
 **算一次取分量。** 用有限群 $C_4=\mathbb Z/4\mathbb Z$ 代替自守商，令 $i^2=-1$ 且 $f(j)=2+3i^j+(-1)^j$。要取出按 $j\mapsto i^j$ 变换的分量，就乘 $i^{-j}$ 后平均。四项的和为 $0+12+0$，除以 $4$ 得 $3$，所以该分量是 $3i^j$。换成测试特征 $j\mapsto(-i)^j$ 时，三个原有分量的加权和都为零。下面的 theta 积分也用求和或积分挑选分量。复杂性来自实际群的作用，以及随目标群变量而变的核。
 
 ## 把一个群上的函数送到另一个群
 
-先看一个熟悉的格求和。用 $\phi_t(u)=e^{-\pi t u^2}$ 和傅里叶变换约定 $\widehat\phi_t(\xi)=\int_{\mathbb R}\phi_t(u)e^{-2\pi i u\xi}\,du$，高斯积分给出 $\widehat\phi_t(\xi)=t^{-1/2}e^{-\pi\xi^2/t}$。对 $\phi_t$ 使用泊松求和就得到
+先看一个熟悉的格求和。用 $\phi_t(u)=e^{-\pi t u^2}$ 和傅里叶变换约定 $`\widehat\phi_t(\xi)=\int_{\mathbb R}\phi_t(u)e^{-2\pi i u\xi}\,du`$，高斯积分给出 $\widehat\phi_t(\xi)=t^{-1/2}e^{-\pi\xi^2/t}$。对 $\phi_t$ 使用泊松求和就得到
 
 $$
 \vartheta(t)=\sum_{m\in\mathbb Z}e^{-\pi t m^2}
 =t^{-1/2}\vartheta(1/t).
 $$
 
-取 $t=4$。直接在收敛很快的一侧计算，$\vartheta(4)=1+2e^{-4\pi}+2e^{-16\pi}+\cdots\approx1.000006975$。同一公式给出 $\vartheta(1/4)=2\vartheta(4)\approx2.000013949$。这个计算展示了 theta 构造的基本材料：先变换一个测试函数，再对有理或整数点求和，傅里叶变换由此产生函数的变换律。 [候选源码中的格 theta 反演](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/LatticeTheta/ThetaShiftInversion.lean#L63-L70)
+取 $t=4$。直接在收敛很快的一侧计算，$`\vartheta(4)=1+2e^{-4\pi}+2e^{-16\pi}+\cdots\approx1.000006975`$。同一公式给出 $\vartheta(1/4)=2\vartheta(4)\approx2.000013949$。这个计算展示了 theta 构造的基本材料：先变换一个测试函数，再对有理或整数点求和，傅里叶变换由此产生函数的变换律。 [候选源码中的格 theta 反演](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Formalism/LatticeTheta/ThetaShiftInversion.lean#L63-L70)
 
 在一般的 theta 对应中，两个群 $G,H$ 作为**对偶对**共同作用在一个辛空间上。两个作用彼此交换，并且每个群在辛群中是另一个的中心化子。Weil 表示把辛变换的适当覆盖群作用在测试函数上，傅里叶变换是其中一种典型操作。在具有适当的提升或分裂及收敛条件时，把变换后的测试函数对有理点求和，得到核 $\Theta_\Phi(g,h)$。固定测试函数 $\Phi$，把 $G$ 上的自守形式 $f$ 与核在源群变量 $g$ 上配对，就得到 $H$ 上的函数。用一种共轭约定，可示意为
 
-$$
+```math
 h\longmapsto\int_{G(F)\backslash G(\mathbb A_F)}
      \Theta_\Phi(g,h)\overline{f(g)}\,dg .
-$$
+```
 
 改变 $f$ 和 $\Phi$，再取所得函数生成的空间，可以研究其中出现的自守表示。 [Gan–Qiu–Takeda，§1](https://arxiv.org/pdf/1207.4709v3)
 
@@ -34,12 +34,12 @@ $$
 
 ## 同一个素数处比较什么
 
-数域的一个**有限处**可以从整数环的非零素理想得到。在那个素理想定义的距离下取完备化，得到相应的局部域。对有理数，素数 $\ell$ 给出的局部整数环写成 $\mathbb Z_\ell$。它可以看成一列模 $\ell^m$ 的余数，彼此满足降模相容。它的分式域是 $\mathbb Q_\ell$。下文的「$\ell$ 进」指使用这些系数，和选择在哪个素数处观察一个表示是两件事。
+数域的一个**有限处**可以从整数环的非零素理想得到。在那个素理想定义的距离下取完备化，得到相应的局部域。对有理数，素数 $`\ell`$ 给出的局部整数环写成 $\mathbb Z_\ell$。它可以看成一列模 $\ell^m$ 的余数，彼此满足降模相容。它的分式域是 $\mathbb Q_\ell$。下文的「$`\ell`$ 进」指使用这些系数，和选择在哪个素数处观察一个表示是两件事。
 
-**伽罗瓦表示**把伽罗瓦群元素变成矩阵。设 $C/\mathbb Q$ 是椭圆曲线。它的 $\ell^m$ 阶扭点随 $m$ 变化，取逆极限得到秩二的 $\mathbb Z_\ell$-模 $T_\ell C$，绝对伽罗瓦群作用在上面。对好约化素数 $p\ne\ell$，在算术 Frobenius 约定下，对应特征多项式为 $T^2-a_pT+p$，其中 $a_p=p+1-\#C(\mathbb F_p)$。于是可以用有限域上的点数算出矩阵的迹和行列式。
+**伽罗瓦表示**把伽罗瓦群元素变成矩阵。设 $C/\mathbb Q$ 是椭圆曲线。它的 $\ell^m$ 阶扭点随 $m$ 变化，取逆极限得到秩二的 $\mathbb Z_\ell$-模 $T_\ell C$，绝对伽罗瓦群作用在上面。对好约化素数 $p\ne\ell$，在算术 Frobenius 约定下，对应特征多项式为 $T^2-a_pT+p$，其中 $`a_p=p+1-\#C(\mathbb F_p)`$。于是可以用有限域上的点数算出矩阵的迹和行列式。
 
-例如取 $C:y^2=x^3-x$、$p=5$、$\ell=3$。对 $x=0,1,2,3,4$，右边模 $5$ 依次是 $0,0,1,4,0$，所以对应的 $y$ 取值数是 $1,1,2,2,1$。加上无穷远点共 $8$ 点，因此 $a_5=5+1-8=-2$，Frobenius 多项式是 $T^2+2T+5$。在局部自守侧，若一个无分歧参数在同样的归一化下有这个多项式，矩阵两侧就通过了这个位置的检验。只通过一个好素数的检验，仍然留下坏素数处的惯性作用和 $p=\ell$ 的比较要说明。
+例如取 $C:y^2=x^3-x$、$`p=5`$、$`\ell=3`$。对 $x=0,1,2,3,4$，右边模 $5$ 依次是 $0,0,1,4,0$，所以对应的 $y$ 取值数是 $1,1,2,2,1$。加上无穷远点共 $8$ 点，因此 $a_5=5+1-8=-2$，Frobenius 多项式是 $T^2+2T+5$。在局部自守侧，若一个无分歧参数在同样的归一化下有这个多项式，矩阵两侧就通过了这个位置的检验。只通过一个好素数的检验，仍然留下坏素数处的惯性作用和 $p=\ell$ 的比较要说明。
 
-一般的 Weil–Deligne 参数把局部 Weil 群的一个表示和一个幂零算子 $N$ 放在一起。惯性群负责记录作用中看不见于剩余域的部分，$N$ 负责记录单值化数据。**局部 Langlands**给出局部群的表示与局部参数之间的对应。**局部–整体相容性**进一步要求，从一个整体自守表示得到的整体伽罗瓦表示限制到某个局部后，应该在明确的归一化和适用条件下与那个局部参数相合。对照每条结论的素数、归一化和比较强度，是阅读第 6 章 `RecTExists` 与 `Row0b` 的准备。 [Harris–Taylor，局部 Langlands 的几何构造](https://press.princeton.edu/books/paperback/9780691090924/the-geometry-and-cohomology-of-some-simple-shimura-varieties) · [Harris–Lan–Taylor–Thorne，定理 1.2](https://arxiv.org/pdf/1411.6717)
+一般的 Weil–Deligne 参数把局部 Weil 群的一个表示和一个幂零算子 $`N`$ 放在一起。惯性群负责记录作用中看不见于剩余域的部分，$`N`$ 负责记录单值化数据。**局部 Langlands**给出局部群的表示与局部参数之间的对应。**局部–整体相容性**进一步要求，从一个整体自守表示得到的整体伽罗瓦表示限制到某个局部后，应该在明确的归一化和适用条件下与那个局部参数相合。对照每条结论的素数、归一化和比较强度，是阅读第 6 章 `RecTExists` 与 `Row0b` 的准备。 [Harris–Taylor，局部 Langlands 的几何构造](https://press.princeton.edu/books/paperback/9780691090924/the-geometry-and-cohomology-of-some-simple-shimura-varieties) · [Harris–Lan–Taylor–Thorne，定理 1.2](https://arxiv.org/pdf/1411.6717)
 
 **自检。** 在 $C_4$ 的例子中，把 $f$ 换成 $1+(-i)^j$。分别用 $i^j$ 与 $(-i)^j$ 测试，得到什么系数？在椭圆曲线例子中，如果误把点数 $8$ 当成迹，多项式的哪一项会改变？为什么整群上的积分恒等式和一个素数处的特征多项式检验承担不同任务？
